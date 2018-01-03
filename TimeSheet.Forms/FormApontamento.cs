@@ -201,6 +201,13 @@ namespace TimeSheet.Forms
             txtRetornoAlmoco.Visible = false;
         }
         #endregion
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            txtEntrada.Text = DateTime.Now.ToString("HH:mm:ss");
+
+        }
     }
     public class Apontamento
     {

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lblMesRef = new MetroFramework.Controls.MetroLabel();
@@ -39,10 +40,24 @@
             this.lblNomeColaborador = new MetroFramework.Controls.MetroLabel();
             this.metroLabel15 = new MetroFramework.Controls.MetroLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.metroLabel20 = new MetroFramework.Controls.MetroLabel();
+            this.lblUltimoAcesso = new MetroFramework.Controls.MetroLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel14 = new MetroFramework.Controls.MetroLabel();
             this.lblMarcacaSaida = new MetroFramework.Controls.MetroLabel();
             this.lblMarcacaoRetornoAlmoco = new MetroFramework.Controls.MetroLabel();
             this.lblMarcacaoSaidaAlmoco = new MetroFramework.Controls.MetroLabel();
             this.lblMarcacaoEntrada = new MetroFramework.Controls.MetroLabel();
+            this.CancelEntrada = new System.Windows.Forms.PictureBox();
+            this.CancelRetornoAlmoco = new System.Windows.Forms.PictureBox();
+            this.CancelSaida = new System.Windows.Forms.PictureBox();
+            this.CancelSaidaAlmoco = new System.Windows.Forms.PictureBox();
+            this.checkEntrada = new System.Windows.Forms.PictureBox();
+            this.checkSaidaAlmoco = new System.Windows.Forms.PictureBox();
+            this.checkRetornoAlmoco = new System.Windows.Forms.PictureBox();
+            this.checkSaida = new System.Windows.Forms.PictureBox();
             this.btnSaidaAlmoco = new MetroFramework.Controls.MetroButton();
             this.btnRetornoAlmoco = new MetroFramework.Controls.MetroButton();
             this.btnSaida = new MetroFramework.Controls.MetroButton();
@@ -55,11 +70,6 @@
             this.txtSaidaAlmoco = new System.Windows.Forms.MaskedTextBox();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.txtRetornoAlmoco = new System.Windows.Forms.MaskedTextBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.metroLabel20 = new MetroFramework.Controls.MetroLabel();
-            this.lblUltimoAcesso = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel14 = new MetroFramework.Controls.MetroLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.metroLabel12 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel11 = new MetroFramework.Controls.MetroLabel();
@@ -69,20 +79,12 @@
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.CancelEntrada = new System.Windows.Forms.PictureBox();
-            this.CancelRetornoAlmoco = new System.Windows.Forms.PictureBox();
-            this.CancelSaida = new System.Windows.Forms.PictureBox();
-            this.CancelSaidaAlmoco = new System.Windows.Forms.PictureBox();
-            this.checkEntrada = new System.Windows.Forms.PictureBox();
-            this.checkSaidaAlmoco = new System.Windows.Forms.PictureBox();
-            this.checkRetornoAlmoco = new System.Windows.Forms.PictureBox();
-            this.checkSaida = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lblHora = new MetroFramework.Controls.MetroLabel();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CancelEntrada)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CancelRetornoAlmoco)).BeginInit();
@@ -92,6 +94,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkSaidaAlmoco)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkRetornoAlmoco)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkSaida)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox3
@@ -280,6 +283,92 @@
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.metroLabel20);
+            this.groupBox5.Controls.Add(this.lblUltimoAcesso);
+            this.groupBox5.Controls.Add(this.pictureBox1);
+            this.groupBox5.Controls.Add(this.metroLabel13);
+            this.groupBox5.Controls.Add(this.metroLabel14);
+            this.groupBox5.Location = new System.Drawing.Point(20, 23);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(467, 106);
+            this.groupBox5.TabIndex = 27;
+            this.groupBox5.TabStop = false;
+            // 
+            // metroLabel20
+            // 
+            this.metroLabel20.AutoSize = true;
+            this.metroLabel20.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel20.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.metroLabel20.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.metroLabel20.Location = new System.Drawing.Point(11, 88);
+            this.metroLabel20.Name = "metroLabel20";
+            this.metroLabel20.Size = new System.Drawing.Size(89, 15);
+            this.metroLabel20.TabIndex = 23;
+            this.metroLabel20.Text = "Ultímo Acesso:";
+            this.metroLabel20.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroLabel20.UseCustomBackColor = true;
+            this.metroLabel20.UseCustomForeColor = true;
+            this.metroLabel20.UseStyleColors = true;
+            // 
+            // lblUltimoAcesso
+            // 
+            this.lblUltimoAcesso.AutoSize = true;
+            this.lblUltimoAcesso.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.lblUltimoAcesso.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.lblUltimoAcesso.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.lblUltimoAcesso.Location = new System.Drawing.Point(106, 88);
+            this.lblUltimoAcesso.Name = "lblUltimoAcesso";
+            this.lblUltimoAcesso.Size = new System.Drawing.Size(81, 15);
+            this.lblUltimoAcesso.TabIndex = 22;
+            this.lblUltimoAcesso.Text = "ultimoAcesso";
+            this.lblUltimoAcesso.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.lblUltimoAcesso.UseCustomBackColor = true;
+            this.lblUltimoAcesso.UseCustomForeColor = true;
+            this.lblUltimoAcesso.UseStyleColors = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::TimeSheet.Forms.Properties.Resources.alarm_clock__1_;
+            this.pictureBox1.Location = new System.Drawing.Point(11, 14);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 71);
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // metroLabel13
+            // 
+            this.metroLabel13.AutoSize = true;
+            this.metroLabel13.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel13.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.metroLabel13.ForeColor = System.Drawing.Color.LawnGreen;
+            this.metroLabel13.Location = new System.Drawing.Point(126, 44);
+            this.metroLabel13.Name = "metroLabel13";
+            this.metroLabel13.Size = new System.Drawing.Size(239, 25);
+            this.metroLabel13.TabIndex = 20;
+            this.metroLabel13.Text = "Hora minima de Trabalho: ";
+            this.metroLabel13.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroLabel13.UseCustomBackColor = true;
+            this.metroLabel13.UseCustomForeColor = true;
+            this.metroLabel13.UseStyleColors = true;
+            // 
+            // metroLabel14
+            // 
+            this.metroLabel14.AutoSize = true;
+            this.metroLabel14.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel14.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.metroLabel14.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.metroLabel14.Location = new System.Drawing.Point(360, 44);
+            this.metroLabel14.Name = "metroLabel14";
+            this.metroLabel14.Size = new System.Drawing.Size(57, 25);
+            this.metroLabel14.TabIndex = 21;
+            this.metroLabel14.Text = "09:00";
+            this.metroLabel14.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroLabel14.UseCustomBackColor = true;
+            this.metroLabel14.UseCustomForeColor = true;
+            this.metroLabel14.UseStyleColors = true;
+            // 
             // lblMarcacaSaida
             // 
             this.lblMarcacaSaida.AutoSize = true;
@@ -347,6 +436,90 @@
             this.lblMarcacaoEntrada.UseCustomForeColor = true;
             this.lblMarcacaoEntrada.UseStyleColors = true;
             this.lblMarcacaoEntrada.Visible = false;
+            // 
+            // CancelEntrada
+            // 
+            this.CancelEntrada.Image = global::TimeSheet.Forms.Properties.Resources.delete2;
+            this.CancelEntrada.Location = new System.Drawing.Point(447, 135);
+            this.CancelEntrada.Name = "CancelEntrada";
+            this.CancelEntrada.Size = new System.Drawing.Size(40, 32);
+            this.CancelEntrada.TabIndex = 19;
+            this.CancelEntrada.TabStop = false;
+            this.CancelEntrada.Visible = false;
+            this.CancelEntrada.Click += new System.EventHandler(this.CancelEntrada_Click);
+            // 
+            // CancelRetornoAlmoco
+            // 
+            this.CancelRetornoAlmoco.Image = global::TimeSheet.Forms.Properties.Resources.delete2;
+            this.CancelRetornoAlmoco.Location = new System.Drawing.Point(447, 215);
+            this.CancelRetornoAlmoco.Name = "CancelRetornoAlmoco";
+            this.CancelRetornoAlmoco.Size = new System.Drawing.Size(40, 32);
+            this.CancelRetornoAlmoco.TabIndex = 18;
+            this.CancelRetornoAlmoco.TabStop = false;
+            this.CancelRetornoAlmoco.Visible = false;
+            this.CancelRetornoAlmoco.Click += new System.EventHandler(this.CancelRetornoAlmoco_Click);
+            // 
+            // CancelSaida
+            // 
+            this.CancelSaida.Image = global::TimeSheet.Forms.Properties.Resources.delete2;
+            this.CancelSaida.Location = new System.Drawing.Point(447, 257);
+            this.CancelSaida.Name = "CancelSaida";
+            this.CancelSaida.Size = new System.Drawing.Size(40, 32);
+            this.CancelSaida.TabIndex = 17;
+            this.CancelSaida.TabStop = false;
+            this.CancelSaida.Visible = false;
+            this.CancelSaida.Click += new System.EventHandler(this.CancelSaida_Click);
+            // 
+            // CancelSaidaAlmoco
+            // 
+            this.CancelSaidaAlmoco.Image = global::TimeSheet.Forms.Properties.Resources.delete2;
+            this.CancelSaidaAlmoco.Location = new System.Drawing.Point(447, 175);
+            this.CancelSaidaAlmoco.Name = "CancelSaidaAlmoco";
+            this.CancelSaidaAlmoco.Size = new System.Drawing.Size(40, 32);
+            this.CancelSaidaAlmoco.TabIndex = 16;
+            this.CancelSaidaAlmoco.TabStop = false;
+            this.CancelSaidaAlmoco.Visible = false;
+            this.CancelSaidaAlmoco.Click += new System.EventHandler(this.CancelSaidaAlmoco_Click);
+            // 
+            // checkEntrada
+            // 
+            this.checkEntrada.Image = global::TimeSheet.Forms.Properties.Resources.check;
+            this.checkEntrada.Location = new System.Drawing.Point(337, 135);
+            this.checkEntrada.Name = "checkEntrada";
+            this.checkEntrada.Size = new System.Drawing.Size(40, 32);
+            this.checkEntrada.TabIndex = 4;
+            this.checkEntrada.TabStop = false;
+            this.checkEntrada.Visible = false;
+            // 
+            // checkSaidaAlmoco
+            // 
+            this.checkSaidaAlmoco.Image = global::TimeSheet.Forms.Properties.Resources.check;
+            this.checkSaidaAlmoco.Location = new System.Drawing.Point(337, 175);
+            this.checkSaidaAlmoco.Name = "checkSaidaAlmoco";
+            this.checkSaidaAlmoco.Size = new System.Drawing.Size(40, 32);
+            this.checkSaidaAlmoco.TabIndex = 5;
+            this.checkSaidaAlmoco.TabStop = false;
+            this.checkSaidaAlmoco.Visible = false;
+            // 
+            // checkRetornoAlmoco
+            // 
+            this.checkRetornoAlmoco.Image = global::TimeSheet.Forms.Properties.Resources.check;
+            this.checkRetornoAlmoco.Location = new System.Drawing.Point(337, 215);
+            this.checkRetornoAlmoco.Name = "checkRetornoAlmoco";
+            this.checkRetornoAlmoco.Size = new System.Drawing.Size(40, 32);
+            this.checkRetornoAlmoco.TabIndex = 6;
+            this.checkRetornoAlmoco.TabStop = false;
+            this.checkRetornoAlmoco.Visible = false;
+            // 
+            // checkSaida
+            // 
+            this.checkSaida.Image = global::TimeSheet.Forms.Properties.Resources.check;
+            this.checkSaida.Location = new System.Drawing.Point(337, 261);
+            this.checkSaida.Name = "checkSaida";
+            this.checkSaida.Size = new System.Drawing.Size(40, 32);
+            this.checkSaida.TabIndex = 7;
+            this.checkSaida.TabStop = false;
+            this.checkSaida.Visible = false;
             // 
             // btnSaidaAlmoco
             // 
@@ -470,7 +643,7 @@
             this.txtSaida.Location = new System.Drawing.Point(212, 266);
             this.txtSaida.Mask = "00:00";
             this.txtSaida.Name = "txtSaida";
-            this.txtSaida.Size = new System.Drawing.Size(80, 22);
+            this.txtSaida.Size = new System.Drawing.Size(105, 22);
             this.txtSaida.TabIndex = 3;
             this.txtSaida.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSaida.ValidatingType = typeof(System.DateTime);
@@ -481,7 +654,7 @@
             this.txtEntrada.Location = new System.Drawing.Point(212, 144);
             this.txtEntrada.Mask = "00:00";
             this.txtEntrada.Name = "txtEntrada";
-            this.txtEntrada.Size = new System.Drawing.Size(80, 22);
+            this.txtEntrada.Size = new System.Drawing.Size(105, 22);
             this.txtEntrada.TabIndex = 0;
             this.txtEntrada.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtEntrada.ValidatingType = typeof(System.DateTime);
@@ -492,7 +665,7 @@
             this.txtSaidaAlmoco.Location = new System.Drawing.Point(212, 184);
             this.txtSaidaAlmoco.Mask = "00:00";
             this.txtSaidaAlmoco.Name = "txtSaidaAlmoco";
-            this.txtSaidaAlmoco.Size = new System.Drawing.Size(80, 22);
+            this.txtSaidaAlmoco.Size = new System.Drawing.Size(105, 22);
             this.txtSaidaAlmoco.TabIndex = 1;
             this.txtSaidaAlmoco.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSaidaAlmoco.ValidatingType = typeof(System.DateTime);
@@ -519,87 +692,10 @@
             this.txtRetornoAlmoco.Location = new System.Drawing.Point(212, 224);
             this.txtRetornoAlmoco.Mask = "00:00";
             this.txtRetornoAlmoco.Name = "txtRetornoAlmoco";
-            this.txtRetornoAlmoco.Size = new System.Drawing.Size(80, 22);
+            this.txtRetornoAlmoco.Size = new System.Drawing.Size(105, 22);
             this.txtRetornoAlmoco.TabIndex = 2;
             this.txtRetornoAlmoco.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtRetornoAlmoco.ValidatingType = typeof(System.DateTime);
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.metroLabel20);
-            this.groupBox5.Controls.Add(this.lblUltimoAcesso);
-            this.groupBox5.Controls.Add(this.pictureBox1);
-            this.groupBox5.Controls.Add(this.metroLabel13);
-            this.groupBox5.Controls.Add(this.metroLabel14);
-            this.groupBox5.Location = new System.Drawing.Point(20, 23);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(467, 106);
-            this.groupBox5.TabIndex = 27;
-            this.groupBox5.TabStop = false;
-            // 
-            // metroLabel20
-            // 
-            this.metroLabel20.AutoSize = true;
-            this.metroLabel20.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel20.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel20.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.metroLabel20.Location = new System.Drawing.Point(11, 88);
-            this.metroLabel20.Name = "metroLabel20";
-            this.metroLabel20.Size = new System.Drawing.Size(89, 15);
-            this.metroLabel20.TabIndex = 23;
-            this.metroLabel20.Text = "Ultímo Acesso:";
-            this.metroLabel20.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroLabel20.UseCustomBackColor = true;
-            this.metroLabel20.UseCustomForeColor = true;
-            this.metroLabel20.UseStyleColors = true;
-            // 
-            // lblUltimoAcesso
-            // 
-            this.lblUltimoAcesso.AutoSize = true;
-            this.lblUltimoAcesso.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.lblUltimoAcesso.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.lblUltimoAcesso.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lblUltimoAcesso.Location = new System.Drawing.Point(106, 88);
-            this.lblUltimoAcesso.Name = "lblUltimoAcesso";
-            this.lblUltimoAcesso.Size = new System.Drawing.Size(81, 15);
-            this.lblUltimoAcesso.TabIndex = 22;
-            this.lblUltimoAcesso.Text = "ultimoAcesso";
-            this.lblUltimoAcesso.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.lblUltimoAcesso.UseCustomBackColor = true;
-            this.lblUltimoAcesso.UseCustomForeColor = true;
-            this.lblUltimoAcesso.UseStyleColors = true;
-            // 
-            // metroLabel13
-            // 
-            this.metroLabel13.AutoSize = true;
-            this.metroLabel13.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel13.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel13.ForeColor = System.Drawing.Color.LawnGreen;
-            this.metroLabel13.Location = new System.Drawing.Point(126, 44);
-            this.metroLabel13.Name = "metroLabel13";
-            this.metroLabel13.Size = new System.Drawing.Size(239, 25);
-            this.metroLabel13.TabIndex = 20;
-            this.metroLabel13.Text = "Hora minima de Trabalho: ";
-            this.metroLabel13.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroLabel13.UseCustomBackColor = true;
-            this.metroLabel13.UseCustomForeColor = true;
-            this.metroLabel13.UseStyleColors = true;
-            // 
-            // metroLabel14
-            // 
-            this.metroLabel14.AutoSize = true;
-            this.metroLabel14.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel14.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel14.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.metroLabel14.Location = new System.Drawing.Point(360, 44);
-            this.metroLabel14.Name = "metroLabel14";
-            this.metroLabel14.Size = new System.Drawing.Size(57, 25);
-            this.metroLabel14.TabIndex = 21;
-            this.metroLabel14.Text = "09:00";
-            this.metroLabel14.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroLabel14.UseCustomBackColor = true;
-            this.metroLabel14.UseCustomForeColor = true;
-            this.metroLabel14.UseStyleColors = true;
             // 
             // groupBox2
             // 
@@ -745,104 +841,33 @@
             this.metroLabel3.UseCustomForeColor = true;
             this.metroLabel3.UseStyleColors = true;
             // 
-            // pictureBox1
+            // timer1
             // 
-            this.pictureBox1.Image = global::TimeSheet.Forms.Properties.Resources.alarm_clock__1_;
-            this.pictureBox1.Location = new System.Drawing.Point(11, 14);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 71);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // CancelEntrada
+            // lblHora
             // 
-            this.CancelEntrada.Image = global::TimeSheet.Forms.Properties.Resources.delete2;
-            this.CancelEntrada.Location = new System.Drawing.Point(447, 135);
-            this.CancelEntrada.Name = "CancelEntrada";
-            this.CancelEntrada.Size = new System.Drawing.Size(40, 32);
-            this.CancelEntrada.TabIndex = 19;
-            this.CancelEntrada.TabStop = false;
-            this.CancelEntrada.Visible = false;
-            this.CancelEntrada.Click += new System.EventHandler(this.CancelEntrada_Click);
-            // 
-            // CancelRetornoAlmoco
-            // 
-            this.CancelRetornoAlmoco.Image = global::TimeSheet.Forms.Properties.Resources.delete2;
-            this.CancelRetornoAlmoco.Location = new System.Drawing.Point(447, 215);
-            this.CancelRetornoAlmoco.Name = "CancelRetornoAlmoco";
-            this.CancelRetornoAlmoco.Size = new System.Drawing.Size(40, 32);
-            this.CancelRetornoAlmoco.TabIndex = 18;
-            this.CancelRetornoAlmoco.TabStop = false;
-            this.CancelRetornoAlmoco.Visible = false;
-            this.CancelRetornoAlmoco.Click += new System.EventHandler(this.CancelRetornoAlmoco_Click);
-            // 
-            // CancelSaida
-            // 
-            this.CancelSaida.Image = global::TimeSheet.Forms.Properties.Resources.delete2;
-            this.CancelSaida.Location = new System.Drawing.Point(447, 257);
-            this.CancelSaida.Name = "CancelSaida";
-            this.CancelSaida.Size = new System.Drawing.Size(40, 32);
-            this.CancelSaida.TabIndex = 17;
-            this.CancelSaida.TabStop = false;
-            this.CancelSaida.Visible = false;
-            this.CancelSaida.Click += new System.EventHandler(this.CancelSaida_Click);
-            // 
-            // CancelSaidaAlmoco
-            // 
-            this.CancelSaidaAlmoco.Image = global::TimeSheet.Forms.Properties.Resources.delete2;
-            this.CancelSaidaAlmoco.Location = new System.Drawing.Point(447, 175);
-            this.CancelSaidaAlmoco.Name = "CancelSaidaAlmoco";
-            this.CancelSaidaAlmoco.Size = new System.Drawing.Size(40, 32);
-            this.CancelSaidaAlmoco.TabIndex = 16;
-            this.CancelSaidaAlmoco.TabStop = false;
-            this.CancelSaidaAlmoco.Visible = false;
-            this.CancelSaidaAlmoco.Click += new System.EventHandler(this.CancelSaidaAlmoco_Click);
-            // 
-            // checkEntrada
-            // 
-            this.checkEntrada.Image = global::TimeSheet.Forms.Properties.Resources.check;
-            this.checkEntrada.Location = new System.Drawing.Point(337, 135);
-            this.checkEntrada.Name = "checkEntrada";
-            this.checkEntrada.Size = new System.Drawing.Size(40, 32);
-            this.checkEntrada.TabIndex = 4;
-            this.checkEntrada.TabStop = false;
-            this.checkEntrada.Visible = false;
-            // 
-            // checkSaidaAlmoco
-            // 
-            this.checkSaidaAlmoco.Image = global::TimeSheet.Forms.Properties.Resources.check;
-            this.checkSaidaAlmoco.Location = new System.Drawing.Point(337, 175);
-            this.checkSaidaAlmoco.Name = "checkSaidaAlmoco";
-            this.checkSaidaAlmoco.Size = new System.Drawing.Size(40, 32);
-            this.checkSaidaAlmoco.TabIndex = 5;
-            this.checkSaidaAlmoco.TabStop = false;
-            this.checkSaidaAlmoco.Visible = false;
-            // 
-            // checkRetornoAlmoco
-            // 
-            this.checkRetornoAlmoco.Image = global::TimeSheet.Forms.Properties.Resources.check;
-            this.checkRetornoAlmoco.Location = new System.Drawing.Point(337, 215);
-            this.checkRetornoAlmoco.Name = "checkRetornoAlmoco";
-            this.checkRetornoAlmoco.Size = new System.Drawing.Size(40, 32);
-            this.checkRetornoAlmoco.TabIndex = 6;
-            this.checkRetornoAlmoco.TabStop = false;
-            this.checkRetornoAlmoco.Visible = false;
-            // 
-            // checkSaida
-            // 
-            this.checkSaida.Image = global::TimeSheet.Forms.Properties.Resources.check;
-            this.checkSaida.Location = new System.Drawing.Point(337, 261);
-            this.checkSaida.Name = "checkSaida";
-            this.checkSaida.Size = new System.Drawing.Size(40, 32);
-            this.checkSaida.TabIndex = 7;
-            this.checkSaida.TabStop = false;
-            this.checkSaida.Visible = false;
+            this.lblHora.AutoSize = true;
+            this.lblHora.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.lblHora.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.lblHora.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.lblHora.Location = new System.Drawing.Point(158, 576);
+            this.lblHora.Name = "lblHora";
+            this.lblHora.Size = new System.Drawing.Size(57, 25);
+            this.lblHora.TabIndex = 17;
+            this.lblHora.Text = "00:00";
+            this.lblHora.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.lblHora.UseCustomBackColor = true;
+            this.lblHora.UseCustomForeColor = true;
+            this.lblHora.UseStyleColors = true;
             // 
             // FormApontamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(529, 566);
+            this.ClientSize = new System.Drawing.Size(526, 612);
+            this.Controls.Add(this.lblHora);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
@@ -855,8 +880,6 @@
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CancelEntrada)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CancelRetornoAlmoco)).EndInit();
@@ -866,7 +889,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkSaidaAlmoco)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkRetornoAlmoco)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkSaida)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -922,6 +948,8 @@
         private MetroFramework.Controls.MetroLabel metroLabel7;
         private MetroFramework.Controls.MetroLabel metroLabel6;
         private MetroFramework.Controls.MetroLabel metroLabel3;
+        private System.Windows.Forms.Timer timer1;
+        private MetroFramework.Controls.MetroLabel lblHora;
     }
 }
 
