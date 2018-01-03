@@ -1,0 +1,16 @@
+C:\Users\ThiagoPacheco\Desktop\TimeSheet.Views\TimeSheet.Forms\bin\Debug\TimeSheet.Forms.exe.config
+C:\Users\ThiagoPacheco\Desktop\TimeSheet.Views\TimeSheet.Forms\obj\Debug\TimeSheet.Forms.csprojResolveAssemblyReference.cache
+C:\Users\ThiagoPacheco\Desktop\TimeSheet.Views\TimeSheet.Forms\obj\Debug\TimeSheet.Forms.Properties.Resources.resources
+C:\Users\ThiagoPacheco\Desktop\TimeSheet.Views\TimeSheet.Forms\obj\Debug\TimeSheet.Forms.csproj.GenerateResource.Cache
+C:\Users\ThiagoPacheco\Desktop\TimeSheet.Views\TimeSheet.Forms\obj\Debug\TimeSheet.Forms.FormApontamento.resources
+C:\Users\ThiagoPacheco\Desktop\TimeSheet.Views\TimeSheet.Forms\bin\Debug\TimeSheet.Forms.exe
+C:\Users\ThiagoPacheco\Desktop\TimeSheet.Views\TimeSheet.Forms\bin\Debug\TimeSheet.Forms.pdb
+C:\Users\ThiagoPacheco\Desktop\TimeSheet.Views\TimeSheet.Forms\bin\Debug\MetroFramework.Design.dll
+C:\Users\ThiagoPacheco\Desktop\TimeSheet.Views\TimeSheet.Forms\bin\Debug\MetroFramework.dll
+C:\Users\ThiagoPacheco\Desktop\TimeSheet.Views\TimeSheet.Forms\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\ThiagoPacheco\Desktop\TimeSheet.Views\TimeSheet.Forms\obj\Debug\TimeSheet.Forms.exe
+C:\Users\ThiagoPacheco\Desktop\TimeSheet.Views\TimeSheet.Forms\obj\Debug\TimeSheet.Forms.pdb
+C:\Users\ThiagoPacheco\Desktop\TimeSheet.Views\TimeSheet.Forms\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ThiagoPacheco\Desktop\TimeSheet.Views\TimeSheet.Forms\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\ThiagoPacheco\Desktop\TimeSheet.Views\TimeSheet.Forms\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ThiagoPacheco\Desktop\TimeSheet.Views\TimeSheet.Forms\bin\Debug\System.Net.Http.Formatting.xml
