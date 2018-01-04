@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework;
 using MetroFramework.Forms;
 using Newtonsoft.Json;
+
 
 namespace TimeSheet.Forms
 {
@@ -14,6 +17,14 @@ namespace TimeSheet.Forms
         public FormApontamento()
         {
             InitializeComponent();
+            // Here we call Regex.Match.
+            String strpattern = @"^([0-1][0-9]|[2][0-3]):([0-5][0-9])$"; //Pattern is Ok
+            Regex regex = new Regex(strpattern);
+
+            if (regex.Match("09:00").Success)
+            {
+                MetroMessageBox.Show(null, "Hora Ínvalida", "Hora ínvalida", MessageBoxButtons.RetryCancel);
+            }
             //chamando a api pela url
             RunAsync().Wait();
         }
@@ -42,6 +53,10 @@ namespace TimeSheet.Forms
 
 
         #region Ações Entrada
+        private void btnRelogioEntrada_Click(object sender, EventArgs e)
+        {
+            txtEntrada.Text = DateTime.Now.ToString("HH:mm:ss");
+        }
         private void btnEntrada_Click(object sender, EventArgs e)
         {
             Entrada();
@@ -65,6 +80,10 @@ namespace TimeSheet.Forms
 
         #endregion
         #region Ações Saida Almoço
+        private void btnRelogioSaidaAlmoco_Click(object sender, EventArgs e)
+        {
+            txtSaidaAlmoco.Text = DateTime.Now.ToString("HH:mm:ss");
+        }
         private void btnSaidaAlmoco_Click(object sender, EventArgs e)
         {
             SaidaAlmoco();
@@ -85,6 +104,10 @@ namespace TimeSheet.Forms
         }
         #endregion
         #region Ações Retorno Almoço
+        private void btnRelogioRetornoAlmoco_Click(object sender, EventArgs e)
+        {
+            txtRetornoAlmoco.Text = DateTime.Now.ToString("HH:mm:ss");
+        }
         private void btnRetornoAlmoco_Click(object sender, EventArgs e)
         {
             RetornoAlmoco();
@@ -105,6 +128,10 @@ namespace TimeSheet.Forms
         }
         #endregion
         #region Ações Saida
+        private void btnRelogioSaida_Click(object sender, EventArgs e)
+        {
+            txtSaida.Text = DateTime.Now.ToString("HH:mm:ss");
+        }
         private void btnSaida_Click(object sender, EventArgs e)
         {
             Saida();
@@ -205,8 +232,6 @@ namespace TimeSheet.Forms
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            txtEntrada.Text = DateTime.Now.ToString("HH:mm:ss");
-
         }
     }
     public class Apontamento
