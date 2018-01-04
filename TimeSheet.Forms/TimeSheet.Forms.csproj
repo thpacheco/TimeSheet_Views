@@ -66,14 +66,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\MarcacaoController\IMarcacao.cs" />
+    <Compile Include="Controller\MarcacaoController\Marcacao.cs" />
+    <Compile Include="Controller\MarcacaoController\MarcacaoEntrada.cs" />
+    <Compile Include="Enum\EnumMarcacao.cs" />
     <Compile Include="FormApontamento.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormApontamento.Designer.cs">
       <DependentUpon>FormApontamento.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Apontamento.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ApontamentoService.cs" />
+    <Compile Include="Util\Extension.cs" />
     <EmbeddedResource Include="FormApontamento.resx">
       <DependentUpon>FormApontamento.cs</DependentUpon>
     </EmbeddedResource>

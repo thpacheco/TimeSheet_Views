@@ -8,47 +8,42 @@ using System.Windows.Forms;
 using MetroFramework;
 using MetroFramework.Forms;
 using Newtonsoft.Json;
-
+using TimeSheet.Forms.Controller.MarcacaoController;
+using TimeSheet.Forms.Enum;
+using TimeSheet.Forms.Models;
+using TimeSheet.Forms.Service;
 
 namespace TimeSheet.Forms
 {
     public partial class FormApontamento : MetroForm
     {
+        private readonly IMarcacao _marcacaoEntrada = new MarcacaoEntrada();
+        private readonly ApontamentoService _marcacaoService = new ApontamentoService();
+        private readonly EfetuaMarcacao _realizaMarcacao = new EfetuaMarcacao();
+        public Marcacao _marcacao;
+        public Apontamento _apontamento;
+        public static string _IdUsuario = "5a4bcf4f7a0052364c68617f";
+
         public FormApontamento()
         {
             InitializeComponent();
-            // Here we call Regex.Match.
-            String strpattern = @"^([0-1][0-9]|[2][0-3]):([0-5][0-9])$"; //Pattern is Ok
-            Regex regex = new Regex(strpattern);
-
-            if (regex.Match("09:00").Success)
-            {
-                MetroMessageBox.Show(null, "Hora Ínvalida", "Hora ínvalida", MessageBoxButtons.RetryCancel);
-            }
-            //chamando a api pela url
-            RunAsync().Wait();
+            VerificaJaMarcadoNoDia();
         }
-
-        static async Task RunAsync()
+        private void VerificaJaMarcadoNoDia()
         {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://localhost/timesheet/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            Task<Apontamento> apontamento = _marcacaoService.BuscarMarcacaoNoDia(_IdUsuario, DateTime.Now.Date.ToString("dd/MM/yyyy"));
 
-                // HTTP GET
-                HttpResponseMessage response = client.GetAsync("api/apontamentos").Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    var apontamento = response.Content.ReadAsStringAsync();
-                    var dados = JsonConvert.DeserializeObject<List<Apontamento>>(apontamento.Result);
-                }
-                else
-                {
-                    Console.WriteLine("Error");
-                }
-            }
+            txtEntrada.Text = apontamento.Result.Entrada;
+            Entrada();
+
+            txtSaidaAlmoco.Text = apontamento.Result.SaidaAlmoco;
+            SaidaAlmoco();
+
+            txtRetornoAlmoco.Text = apontamento.Result.RetornoAlmoco;
+            RetornoAlmoco();
+
+            txtSaida.Text = apontamento.Result.Saida;
+            Saida();
         }
 
 
@@ -75,6 +70,8 @@ namespace TimeSheet.Forms
             CancelEntrada.Visible = false;
 
             btnEntrada.Visible = true;
+
+            btnRelogioEntrada.Visible = true;
 
         }
 
@@ -174,15 +171,26 @@ namespace TimeSheet.Forms
 
         public void Entrada()
         {
-
-            MessageBox.Show("Marcação Registrada!");
-
-            MarcacaoEntradaEfetuada(txtEntrada.Text);
-
-
+            if (ValidarHoraValida(txtEntrada.Text))
+            {
+                MarcacaoEntradaEfetuada(txtEntrada.Text);
+            }
         }
         public void MarcacaoEntradaEfetuada(string entrada)
         {
+
+            //_apontamento = new Apontamento
+            //{
+            //    IdUsuario = "5a4bcf4f7a0052364c68617f",
+            //    Entrada = entrada
+            //};
+
+
+            //_marcacao = new Marcacao(_apontamento);
+
+            //_realizaMarcacao.RealizaMarcacao(_marcacao, _marcacaoEntrada);
+
+
             checkEntrada.Visible = true;
 
             CancelEntrada.Visible = true;
@@ -194,6 +202,13 @@ namespace TimeSheet.Forms
             lblMarcacaoEntrada.Visible = true;
 
             txtEntrada.Visible = false;
+
+            btnRelogioEntrada.Visible = false;
+        }
+
+        private void MarcacaoEntrada()
+        {
+            throw new NotImplementedException();
         }
         #endregion
         #region Metodos Saida Almoço
@@ -229,25 +244,21 @@ namespace TimeSheet.Forms
         }
         #endregion
 
+        #region Metodos de validação
+        private bool ValidarHoraValida(string hora)
+        {
+            String strpattern = @"^([0-1][0-9]|[2][0-3]):([0-5][0-9])$"; //Pattern is Ok
+
+            Regex regex = new Regex(strpattern);
+
+            return regex.Match(hora).Success;
+        }
+        #endregion
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
         }
     }
-    public class Apontamento
-    {
-        public string Id { get; set; }
 
-        public string IdUsuario { get; set; }
-
-        public string Entrada { get; set; }
-
-        public string SaidaAlmoco { get; set; }
-
-        public string RetornoAlmoco { get; set; }
-
-        public string Saida { get; set; }
-
-        public string DataMarcacao { get; set; }
-    }
 }
