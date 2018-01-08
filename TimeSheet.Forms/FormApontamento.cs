@@ -52,7 +52,6 @@ namespace TimeSheet.Forms
             if (apontamento != null && apontamento.RetornoAlmoco != null)
             {
                 CarregarMarcacaoRetornoAlmoco(apontamento.RetornoAlmoco);
-                HoraMinimaPraSaida(apontamento.RetornoAlmoco);
             }
 
             if (apontamento != null && apontamento.Saida != null) CarregarMarcacaoSaida(apontamento.Saida);
@@ -117,7 +116,6 @@ namespace TimeSheet.Forms
                 if (Validation.ValidarHoraValida(txtRetornoAlmoco.Text))
                 {
                     EfetuaMarcacaoRetornoAlmoco(txtRetornoAlmoco.Text);
-                    HoraMinimaPraSaida(txtRetornoAlmoco.Text);
                 }
             }
         }
@@ -396,25 +394,10 @@ namespace TimeSheet.Forms
             lblTempoRestante.Text = totalTempoRestante.ToString();
 
 
-            TimeSpan totalHoraMinimaSaida = (horaRetornoAlmocoFinal + totalHorasDia);
+            TimeSpan totalHoraMinimaSaida = (horaRetornoAlmocoFinal + totalTempoRestante);
 
             lblHoraMinimaSaida.Text = totalHoraMinimaSaida.ToString();
 
         }
-
-        private void HoraMinimaPraSaida(string horaSaidaAlmoco)
-        {
-            TimeSpan totalHorasDia = new TimeSpan(9, 0, 0);
-
-            int hora = Convert.ToInt32(horaSaidaAlmoco.Substring(0, 2));
-            int minutos = Convert.ToInt32(horaSaidaAlmoco.Substring(3, 2));
-
-            TimeSpan horaRetornoAlmocoFinal = new TimeSpan(hora, minutos, 0);
-
-            TimeSpan total = horaRetornoAlmocoFinal + totalHorasDia;
-
-            lblHoraMinimaSaida.Text = total.ToString();
-        }
-
     }
 }
