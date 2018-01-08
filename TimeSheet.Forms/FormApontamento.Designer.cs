@@ -75,12 +75,12 @@
             this.lblUltimoAcesso = new MetroFramework.Controls.MetroLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.metroLabel12 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel11 = new MetroFramework.Controls.MetroLabel();
+            this.lblTempoRestante = new MetroFramework.Controls.MetroLabel();
             this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
+            this.lblTotalTranscorrido = new MetroFramework.Controls.MetroLabel();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.lblHoraMinimaSaida = new MetroFramework.Controls.MetroLabel();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblHora = new MetroFramework.Controls.MetroLabel();
@@ -206,9 +206,9 @@
             this.lblNomeColaborador.ForeColor = System.Drawing.SystemColors.Desktop;
             this.lblNomeColaborador.Location = new System.Drawing.Point(208, 16);
             this.lblNomeColaborador.Name = "lblNomeColaborador";
-            this.lblNomeColaborador.Size = new System.Drawing.Size(108, 15);
+            this.lblNomeColaborador.Size = new System.Drawing.Size(132, 15);
             this.lblNomeColaborador.TabIndex = 12;
-            this.lblNomeColaborador.Text = "NomeColaborador";
+            this.lblNomeColaborador.Text = "Thiago Xavier Pacheco";
             this.lblNomeColaborador.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.lblNomeColaborador.UseCustomBackColor = true;
             this.lblNomeColaborador.UseCustomForeColor = true;
@@ -412,7 +412,7 @@
             this.metroLabel13.Name = "metroLabel13";
             this.metroLabel13.Size = new System.Drawing.Size(239, 25);
             this.metroLabel13.TabIndex = 20;
-            this.metroLabel13.Text = "Hora minima de Trabalho: ";
+            this.metroLabel13.Text = "Hora mínima de Trabalho: ";
             this.metroLabel13.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroLabel13.UseCustomBackColor = true;
             this.metroLabel13.UseCustomForeColor = true;
@@ -730,12 +730,12 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.metroLabel12);
-            this.groupBox2.Controls.Add(this.metroLabel11);
+            this.groupBox2.Controls.Add(this.lblTempoRestante);
             this.groupBox2.Controls.Add(this.metroLabel10);
             this.groupBox2.Controls.Add(this.metroLabel9);
-            this.groupBox2.Controls.Add(this.metroLabel8);
+            this.groupBox2.Controls.Add(this.lblTotalTranscorrido);
             this.groupBox2.Controls.Add(this.metroLabel7);
-            this.groupBox2.Controls.Add(this.metroLabel6);
+            this.groupBox2.Controls.Add(this.lblHoraMinimaSaida);
             this.groupBox2.Controls.Add(this.metroLabel3);
             this.groupBox2.Location = new System.Drawing.Point(6, 448);
             this.groupBox2.Name = "groupBox2";
@@ -759,21 +759,21 @@
             this.metroLabel12.UseCustomForeColor = true;
             this.metroLabel12.UseStyleColors = true;
             // 
-            // metroLabel11
+            // lblTempoRestante
             // 
-            this.metroLabel11.AutoSize = true;
-            this.metroLabel11.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel11.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel11.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.metroLabel11.Location = new System.Drawing.Point(490, 25);
-            this.metroLabel11.Name = "metroLabel11";
-            this.metroLabel11.Size = new System.Drawing.Size(57, 25);
-            this.metroLabel11.TabIndex = 17;
-            this.metroLabel11.Text = "00:00";
-            this.metroLabel11.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroLabel11.UseCustomBackColor = true;
-            this.metroLabel11.UseCustomForeColor = true;
-            this.metroLabel11.UseStyleColors = true;
+            this.lblTempoRestante.AutoSize = true;
+            this.lblTempoRestante.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.lblTempoRestante.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.lblTempoRestante.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.lblTempoRestante.Location = new System.Drawing.Point(490, 25);
+            this.lblTempoRestante.Name = "lblTempoRestante";
+            this.lblTempoRestante.Size = new System.Drawing.Size(57, 25);
+            this.lblTempoRestante.TabIndex = 17;
+            this.lblTempoRestante.Text = "00:00";
+            this.lblTempoRestante.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.lblTempoRestante.UseCustomBackColor = true;
+            this.lblTempoRestante.UseCustomForeColor = true;
+            this.lblTempoRestante.UseStyleColors = true;
             // 
             // metroLabel10
             // 
@@ -801,27 +801,27 @@
             this.metroLabel9.Name = "metroLabel9";
             this.metroLabel9.Size = new System.Drawing.Size(202, 25);
             this.metroLabel9.TabIndex = 15;
-            this.metroLabel9.Text = "Hora miníma p/ Saída:";
+            this.metroLabel9.Text = "Hora mínima p/ Saída:";
             this.metroLabel9.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroLabel9.UseCustomBackColor = true;
             this.metroLabel9.UseCustomForeColor = true;
             this.metroLabel9.UseStyleColors = true;
             // 
-            // metroLabel8
+            // lblTotalTranscorrido
             // 
-            this.metroLabel8.AutoSize = true;
-            this.metroLabel8.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel8.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel8.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.metroLabel8.Location = new System.Drawing.Point(212, 25);
-            this.metroLabel8.Name = "metroLabel8";
-            this.metroLabel8.Size = new System.Drawing.Size(57, 25);
-            this.metroLabel8.TabIndex = 14;
-            this.metroLabel8.Text = "00:00";
-            this.metroLabel8.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroLabel8.UseCustomBackColor = true;
-            this.metroLabel8.UseCustomForeColor = true;
-            this.metroLabel8.UseStyleColors = true;
+            this.lblTotalTranscorrido.AutoSize = true;
+            this.lblTotalTranscorrido.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.lblTotalTranscorrido.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.lblTotalTranscorrido.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.lblTotalTranscorrido.Location = new System.Drawing.Point(212, 25);
+            this.lblTotalTranscorrido.Name = "lblTotalTranscorrido";
+            this.lblTotalTranscorrido.Size = new System.Drawing.Size(57, 25);
+            this.lblTotalTranscorrido.TabIndex = 14;
+            this.lblTotalTranscorrido.Text = "00:00";
+            this.lblTotalTranscorrido.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.lblTotalTranscorrido.UseCustomBackColor = true;
+            this.lblTotalTranscorrido.UseCustomForeColor = true;
+            this.lblTotalTranscorrido.UseStyleColors = true;
             // 
             // metroLabel7
             // 
@@ -839,21 +839,21 @@
             this.metroLabel7.UseCustomForeColor = true;
             this.metroLabel7.UseStyleColors = true;
             // 
-            // metroLabel6
+            // lblHoraMinimaSaida
             // 
-            this.metroLabel6.AutoSize = true;
-            this.metroLabel6.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel6.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel6.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.metroLabel6.Location = new System.Drawing.Point(212, 61);
-            this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(57, 25);
-            this.metroLabel6.TabIndex = 12;
-            this.metroLabel6.Text = "00:00";
-            this.metroLabel6.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroLabel6.UseCustomBackColor = true;
-            this.metroLabel6.UseCustomForeColor = true;
-            this.metroLabel6.UseStyleColors = true;
+            this.lblHoraMinimaSaida.AutoSize = true;
+            this.lblHoraMinimaSaida.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.lblHoraMinimaSaida.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.lblHoraMinimaSaida.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.lblHoraMinimaSaida.Location = new System.Drawing.Point(212, 61);
+            this.lblHoraMinimaSaida.Name = "lblHoraMinimaSaida";
+            this.lblHoraMinimaSaida.Size = new System.Drawing.Size(57, 25);
+            this.lblHoraMinimaSaida.TabIndex = 12;
+            this.lblHoraMinimaSaida.Text = "00:00";
+            this.lblHoraMinimaSaida.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.lblHoraMinimaSaida.UseCustomBackColor = true;
+            this.lblHoraMinimaSaida.UseCustomForeColor = true;
+            this.lblHoraMinimaSaida.UseStyleColors = true;
             // 
             // metroLabel3
             // 
@@ -970,12 +970,12 @@
         private System.Windows.Forms.MaskedTextBox txtRetornoAlmoco;
         private System.Windows.Forms.GroupBox groupBox2;
         private MetroFramework.Controls.MetroLabel metroLabel12;
-        private MetroFramework.Controls.MetroLabel metroLabel11;
+        private MetroFramework.Controls.MetroLabel lblTempoRestante;
         private MetroFramework.Controls.MetroLabel metroLabel10;
         private MetroFramework.Controls.MetroLabel metroLabel9;
-        private MetroFramework.Controls.MetroLabel metroLabel8;
+        private MetroFramework.Controls.MetroLabel lblTotalTranscorrido;
         private MetroFramework.Controls.MetroLabel metroLabel7;
-        private MetroFramework.Controls.MetroLabel metroLabel6;
+        private MetroFramework.Controls.MetroLabel lblHoraMinimaSaida;
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private System.Windows.Forms.Timer timer1;
         private MetroFramework.Controls.MetroLabel lblHora;

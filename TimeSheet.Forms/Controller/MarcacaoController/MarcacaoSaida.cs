@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using TimeSheet.Forms.Models;
 using TimeSheet.Forms.Service;
 
 namespace TimeSheet.Forms.Controller.MarcacaoController
 {
-    public class MarcacaoEntrada : IMarcacao
+    public class MarcacaoSaida : IMarcacao
     {
         private readonly ApontamentoService _apontamentoService = new ApontamentoService();
 
@@ -23,12 +20,12 @@ namespace TimeSheet.Forms.Controller.MarcacaoController
                 apontamento = new Apontamento
                 {
                     IdUsuario = marcacao.IdUsuario,
-                    Entrada = marcacao.Entrada,
+                    Saida = marcacao.Saida,
                     DataMarcacao = dataMarcacao
                 };
             }
 
-            apontamento.Entrada = marcacao.Entrada;
+            apontamento.Saida = marcacao.Saida;
 
             return await _apontamentoService.SalvarMarcacao(apontamento);
         }

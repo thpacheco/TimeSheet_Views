@@ -13,7 +13,7 @@ namespace TimeSheet.Forms.Service
 {
     public class ApontamentoService
     {
-        public readonly HttpClient client = new HttpClient();
+        static HttpClient client = new HttpClient();
         public ApontamentoService()
         {
             // Update port # in the following line.
@@ -23,7 +23,36 @@ namespace TimeSheet.Forms.Service
                 new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<Uri> CadatrarMarcacao(Apontamento apontamento)
+        public async Task<bool> SalvarMarcacao(Apontamento apontamento)
+        {
+
+            try
+            {
+                HttpResponseMessage result;
+
+                var serializedApontamento = JsonConvert.SerializeObject(apontamento);
+
+                var content = new StringContent(serializedApontamento, Encoding.UTF8, "application/json");
+
+                if (apontamento.Id == null)
+                {
+                    result = await client.PostAsync(client.BaseAddress + "api/cadastrar", content);
+                }
+                else
+                {
+                    result = await client.PostAsync(client.BaseAddress + "api/Atualizar", content);
+                }
+
+                return result.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Erro ao salvar marcação", ex);
+            }
+        }
+
+        public async Task<bool> AtualizarMarcacao(Apontamento apontamento)
         {
 
             try
@@ -31,9 +60,9 @@ namespace TimeSheet.Forms.Service
                 var serializedApontamento = JsonConvert.SerializeObject(apontamento);
 
                 var content = new StringContent(serializedApontamento, Encoding.UTF8, "application/json");
-                var result = await client.PostAsync(client.BaseAddress + "api/cadastrar", content);
+                var result = await client.PostAsync(client.BaseAddress + "api/atualizar", content);
 
-                return null;
+                return result.IsSuccessStatusCode;
             }
             catch (Exception ex)
             {
@@ -59,11 +88,9 @@ namespace TimeSheet.Forms.Service
             Apontamento apontamento = null;
             HttpResponseMessage response = await client
                 .GetAsync(client.BaseAddress + "api/apontamento/consultar-apontamento/" + idUsuario + "/" + dataMarcacao.FormatarDataEnvio());
-            if (response.IsSuccessStatusCode)
-            {
-                var apontamenroJsonString = await response.Content.ReadAsStringAsync();
-                apontamento = JsonConvert.DeserializeObject<Apontamento>(apontamenroJsonString);
-            }
+            if (!response.IsSuccessStatusCode) return null;
+            var apontamenroJsonString = await response.Content.ReadAsStringAsync();
+            apontamento = JsonConvert.DeserializeObject<Apontamento>(apontamenroJsonString);
             return apontamento;
         }
     }

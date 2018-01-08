@@ -9,27 +9,31 @@ namespace TimeSheet.Forms.Controller.MarcacaoController
 {
     public class Marcacao
     {
+        public string Id { get; set; }
         public string IdUsuario { get; set; }
         public string Entrada { get; set; }
         public string SaidaAlmoco { get; set; }
         public string RetornoAlmoco { get; set; }
         public string Saida { get; set; }
+        public string DataMarcacao { get; set; }
 
         public Marcacao(Apontamento apontamento)
         {
+            this.Id = apontamento.Id;
             this.IdUsuario = apontamento.IdUsuario;
             this.Entrada = apontamento.Entrada;
             this.SaidaAlmoco = apontamento.SaidaAlmoco;
             this.RetornoAlmoco = apontamento.RetornoAlmoco;
             this.Saida = apontamento.Saida;
+            this.DataMarcacao = apontamento.DataMarcacao;
         }
 
     }
     public class EfetuaMarcacao
     {
-        public void RealizaMarcacao(Marcacao marcacao, IMarcacao iMarcacao)
+        public async Task<bool> RealizaMarcacao(Marcacao marcacao, IMarcacao iMarcacao)
         {
-            iMarcacao.EfetuarMarcacao(marcacao);
+            return await iMarcacao.EfetuarMarcacao(marcacao);
         }
     }
 }
