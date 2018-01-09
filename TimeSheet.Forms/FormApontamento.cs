@@ -61,8 +61,15 @@ namespace TimeSheet.Forms
                 CalcularTotalDiferencashoras(apontamento.Saida);
             }
 
+            CarregarAtividades(apontamento);
             progressMarcacao.Visible = false;
             PainelMarcacao.Visible = true;
+        }
+
+        private void CarregarAtividades(Apontamento apontamento)
+        {
+            txtDescricao.Text = apontamento.DescricaoAtividade;
+            txtCodigoAtividade.Text = apontamento.CodigoAtividade;
         }
 
         #region Metodos Entrada
