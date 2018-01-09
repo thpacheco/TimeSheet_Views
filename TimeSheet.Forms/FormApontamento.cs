@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework;
 using MetroFramework.Forms;
@@ -15,12 +12,13 @@ namespace TimeSheet.Forms
     public partial class FormApontamento : MetroForm
     {
         public static string IdUsuario = "5a4bcf4f7a0052364c68617f";
-        public readonly ApontamentoService ApontamentoService = new ApontamentoService();
+        private readonly IMarcacao _marcacaoAtividades = new MarcacaoAtividades();
         private readonly IMarcacao _marcacaoEntrada = new MarcacaoEntrada();
-        private readonly IMarcacao _marcacaoSaidaAlmoco = new MarcacaoSaidaAlmoco();
         private readonly IMarcacao _marcacaoRetornoAlmoco = new MarcacaoRetornoAlmoco();
         private readonly IMarcacao _marcacaoSaida = new MarcacaoSaida();
+        private readonly IMarcacao _marcacaoSaidaAlmoco = new MarcacaoSaidaAlmoco();
         private readonly EfetuaMarcacao _realizaMarcacao = new EfetuaMarcacao();
+        public readonly ApontamentoService ApontamentoService = new ApontamentoService();
         public Apontamento Apontamento;
         public Marcacao Marcacao;
 
@@ -39,27 +37,83 @@ namespace TimeSheet.Forms
 
         private async void VerificaJaMarcadoNoDia()
         {
+            progressMarcacao.Visible = true;
+            PainelMarcacao.Visible = false;
             var dataMarcacao = DateTime.Now.Date.ToString("dd/MM/yyyy");
-            Apontamento apontamento = await ApontamentoService.BuscarMarcacaoNoDia(IdUsuario, dataMarcacao);
+            var apontamento = await ApontamentoService.BuscarMarcacaoNoDia(IdUsuario, dataMarcacao);
 
             if (apontamento != null && apontamento.Entrada != null) CarregarMarcacaoEntrada(apontamento.Entrada);
 
             if (apontamento != null && apontamento.SaidaAlmoco != null)
             {
                 CarregarMarcacaoSaidaAlmoco(apontamento.SaidaAlmoco);
-                TempoTranscorrido(apontamento.Entrada, apontamento.SaidaAlmoco, apontamento.RetornoAlmoco);
+                TempoTranscorrido(apontamento.Entrada, apontamento.SaidaAlmoco);
             }
             if (apontamento != null && apontamento.RetornoAlmoco != null)
             {
                 CarregarMarcacaoRetornoAlmoco(apontamento.RetornoAlmoco);
+                lblHoraMinimaSaida.Text = RetornarHoraMinimaSaida().ToString();
             }
 
-            if (apontamento != null && apontamento.Saida != null) CarregarMarcacaoSaida(apontamento.Saida);
+            if (apontamento != null && apontamento.Saida != null)
+            {
+                CarregarMarcacaoSaida(apontamento.Saida);
+                CalcularTotalDiferencashoras(apontamento.Saida);
+            }
 
+            progressMarcacao.Visible = false;
+            PainelMarcacao.Visible = true;
         }
-        private void timer1_Tick(object sender, EventArgs e)
+
+        #region Metodos Entrada
+
+        private void CarregarMarcacaoEntrada(string entrada)
         {
-            lblHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            checkEntrada.Visible = true;
+
+            CancelEntrada.Visible = true;
+
+            btnEntrada.Visible = false;
+
+            txtEntrada.Text = entrada;
+
+            lblMarcacaoEntrada.Text = entrada;
+
+            lblMarcacaoEntrada.Visible = true;
+
+            txtEntrada.Visible = false;
+
+            btnRelogioEntrada.Visible = false;
+        }
+
+        #endregion
+
+        #region Metodos Saida Almoço
+
+        private void CarregarMarcacaoSaidaAlmoco(string saidaAlmoco)
+        {
+            checkSaidaAlmoco.Visible = true;
+
+            CancelSaidaAlmoco.Visible = true;
+
+            btnSaidaAlmoco.Visible = false;
+
+            txtSaidaAlmoco.Text = saidaAlmoco;
+
+            lblMarcacaoSaidaAlmoco.Text = saidaAlmoco;
+
+            lblMarcacaoSaidaAlmoco.Visible = true;
+
+            txtSaidaAlmoco.Visible = false;
+
+            btnRelogioSaidaAlmoco.Visible = false;
+        }
+
+        #endregion
+
+        private void btnSalvarAtividades_Click(object sender, EventArgs e)
+        {
+            SalvarAtividades_E_CodigoChamado();
         }
 
         #region Metodos Saída
@@ -67,27 +121,144 @@ namespace TimeSheet.Forms
         public void Saida()
         {
             if (txtSaida.Text != ":")
-            {
                 if (Validation.ValidarHoraValida(txtSaida.Text))
                 {
                     EfetuaMarcacaoSaida(txtSaida.Text);
+                    CalcularTotalDiferencashoras(txtSaida.Text);
                 }
+        }
+
+        private void SalvarAtividades_E_CodigoChamado()
+        {
+            if (ValidarAtividades())
+                SalvarAtividades();
+            else
+                MetroMessageBox.Show(this, "Descrição Atividades e código chamado de ser obrigatório.",
+                    "Campos Obrigatórios", MessageBoxButtons.OK);
+        }
+
+        private async void SalvarAtividades()
+        {
+            Apontamento = new Apontamento();
+            Apontamento.IdUsuario = IdUsuario;
+            Apontamento.DescricaoAtividade = txtDescricao.Text;
+            Apontamento.CodigoAtividade = txtCodigoAtividade.Text;
+
+            Marcacao = new Marcacao(Apontamento);
+
+            if (await _realizaMarcacao.RealizaMarcacao(Marcacao, _marcacaoAtividades))
+            {
+                MetroMessageBox.Show(this, "Atividades Salvas com sucesso.", "Sucesso", MessageBoxButtons.OK);
+                LimparCampos();
             }
         }
+
+        private void LimparCampos()
+        {
+            txtDescricao.Text = "";
+            txtCodigoAtividade.Text = "";
+        }
+
+        private bool ValidarAtividades()
+        {
+            if (txtDescricao.Text == "") return false;
+
+            if (txtCodigoAtividade.Text == "") return false;
+
+            return true;
+        }
+
+        #region Metodos Adicionais
+
+        private string RetornaTotalHorasTrabalhada()
+        {
+            var entrada = ConverteHoras.ConverterHoraMinutos(txtEntrada.Text);
+            var saidaAlmoco = ConverteHoras.ConverterHoraMinutos(txtSaidaAlmoco.Text);
+
+            var totalHorasManha = entrada - saidaAlmoco;
+
+            var retornoAlmoco = ConverteHoras.ConverterHoraMinutos(txtRetornoAlmoco.Text);
+            var saida = ConverteHoras.ConverterHoraMinutos(txtSaida.Text);
+
+            var totalHorasTarde = retornoAlmoco - saida;
+
+            return (totalHorasTarde + totalHorasManha).ToString();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+        }
+
+        private void TempoTranscorrido(string entrada, string saidaAlmoco)
+        {
+            var totalHorasDia = new TimeSpan(9, 0, 0);
+
+            var horaEntrada = Convert.ToInt32(entrada.Substring(0, 2));
+            var minutosEntrada = Convert.ToInt32(entrada.Substring(3, 2));
+            var horaEntradaFinal = new TimeSpan(horaEntrada, minutosEntrada, 0);
+
+            var horaSaidaAlmoco = Convert.ToInt32(saidaAlmoco.Substring(0, 2));
+            var minutosSaidaAlmoco = Convert.ToInt32(saidaAlmoco.Substring(3, 2));
+            var horaSaidaAlmocoFinal = new TimeSpan(horaSaidaAlmoco, minutosSaidaAlmoco, 0);
+
+            var totalTempoTranscorrido = horaEntradaFinal - horaSaidaAlmocoFinal;
+
+            var totalTempoRestante = totalHorasDia + totalTempoTranscorrido;
+
+            lblTotalTranscorrido.Text = totalTempoTranscorrido.ToString().Replace("-", "");
+
+            lblTempoRestante.Text = totalTempoRestante.ToString();
+        }
+
+        private void CalcularTotalDiferencashoras(string saida)
+        {
+            var horaSaida = Convert.ToInt32(saida.Substring(0, 2));
+            var minutosSaida = Convert.ToInt32(saida.Substring(3, 2));
+            var horaSaidaFinal = new TimeSpan(horaSaida, minutosSaida, 0);
+
+            lblHorasDeverAver.Text = (horaSaidaFinal - RetornarHoraMinimaSaida()).ToString();
+        }
+
+        #endregion
+
+        private TimeSpan RetornarHoraMinimaSaida()
+        {
+            var entrada = txtEntrada.Text;
+            var saidaAlmoco = txtSaidaAlmoco.Text;
+            var retornoAlmoco = txtRetornoAlmoco.Text;
+
+            var totalHorasDia = new TimeSpan(9, 0, 0);
+
+            var horaEntradaFinal = ConverteHoras.ConverterHoraMinutos(entrada);
+
+            var horaSaidaAlmocoFinal = ConverteHoras.ConverterHoraMinutos(saidaAlmoco);
+
+            var horaRetornoAlmocoFinal = ConverteHoras.ConverterHoraMinutos(retornoAlmoco);
+
+            var totalTempoTranscorrido = horaEntradaFinal - horaSaidaAlmocoFinal;
+
+            var totalTempoRestante = totalHorasDia + totalTempoTranscorrido;
+
+            var horaMinimaSaida = horaRetornoAlmocoFinal + totalTempoRestante;
+
+            return horaMinimaSaida;
+        }
+
         private async void EfetuaMarcacaoSaida(string saida)
         {
             Apontamento = new Apontamento();
             Apontamento.IdUsuario = IdUsuario;
             Apontamento.Saida = saida;
+            Apontamento.HorasTotalDia = RetornaTotalHorasTrabalhada();
 
             Marcacao = new Marcacao(Apontamento);
 
 
             if (await _realizaMarcacao.RealizaMarcacao(Marcacao, _marcacaoSaida))
-            {
                 CarregarMarcacaoSaida(saida);
-            }
         }
+
         private void CarregarMarcacaoSaida(string saida)
         {
             checkSaida.Visible = true;
@@ -95,6 +266,8 @@ namespace TimeSheet.Forms
             CancelSaida.Visible = true;
 
             btnSaida.Visible = false;
+
+            txtSaida.Text = saida;
 
             lblMarcacaSaida.Text = saida;
 
@@ -112,12 +285,33 @@ namespace TimeSheet.Forms
         public void RetornoAlmoco()
         {
             if (txtRetornoAlmoco.Text != ":")
-            {
                 if (Validation.ValidarHoraValida(txtRetornoAlmoco.Text))
                 {
                     EfetuaMarcacaoRetornoAlmoco(txtRetornoAlmoco.Text);
+                    CalcularHoraMinimaSaida(txtRetornoAlmoco.Text);
                 }
-            }
+        }
+
+        private void CalcularHoraMinimaSaida(string retornoAlmoco)
+        {
+            var entrada = txtEntrada.Text;
+            var saidaAlmoco = txtSaidaAlmoco.Text;
+
+            var totalHorasDia = new TimeSpan(9, 0, 0);
+
+            var horaEntradaFinal = ConverteHoras.ConverterHoraMinutos(entrada);
+
+            var horaSaidaAlmocoFinal = ConverteHoras.ConverterHoraMinutos(saidaAlmoco);
+
+            var horaRetornoAlmocoFinal = ConverteHoras.ConverterHoraMinutos(retornoAlmoco);
+
+            var totalTempoTranscorrido = horaEntradaFinal - horaSaidaAlmocoFinal;
+
+            var totalTempoRestante = totalHorasDia + totalTempoTranscorrido;
+
+            var horaMinimaSaida = horaRetornoAlmocoFinal + totalTempoRestante;
+
+            lblHoraMinimaSaida.Text = horaMinimaSaida.ToString();
         }
 
         private void CarregarMarcacaoRetornoAlmoco(string retornoAlmoco)
@@ -127,6 +321,8 @@ namespace TimeSheet.Forms
             CancelRetornoAlmoco.Visible = true;
 
             btnRetornoAlmoco.Visible = false;
+
+            txtRetornoAlmoco.Text = retornoAlmoco;
 
             lblMarcacaoRetornoAlmoco.Text = retornoAlmoco;
 
@@ -147,12 +343,10 @@ namespace TimeSheet.Forms
 
 
             if (await _realizaMarcacao.RealizaMarcacao(Marcacao, _marcacaoRetornoAlmoco))
-            {
                 CarregarMarcacaoRetornoAlmoco(retornoAlmoco);
-            }
         }
-        #endregion
 
+        #endregion
 
         #region Ações Entrada
 
@@ -164,12 +358,8 @@ namespace TimeSheet.Forms
         private void btnEntrada_Click(object sender, EventArgs e)
         {
             if (txtEntrada.Text != ":")
-            {
                 if (Validation.ValidarHoraValida(txtEntrada.Text))
-                {
                     EfetuaMarcacaoEntrada(txtEntrada.Text);
-                }
-            }
         }
 
         private async void EfetuaMarcacaoEntrada(string entrada)
@@ -182,9 +372,7 @@ namespace TimeSheet.Forms
 
 
             if (await _realizaMarcacao.RealizaMarcacao(Marcacao, _marcacaoEntrada))
-            {
                 CarregarMarcacaoEntrada(entrada);
-            }
         }
 
         private void CancelEntrada_Click(object sender, EventArgs e)
@@ -220,11 +408,12 @@ namespace TimeSheet.Forms
                 if (Validation.ValidarHoraValida(txtSaidaAlmoco.Text))
                 {
                     EfetuaMarcacaoSaidaAlmoco(txtSaidaAlmoco.Text);
-                    TempoTranscorrido(txtEntrada.Text, txtSaidaAlmoco.Text, "");
+                    TempoTranscorrido(txtEntrada.Text, txtSaidaAlmoco.Text);
                 }
-                MetroMessageBox.Show(null, "Horarío ínvalido", "Formato de hora invalido", MessageBoxButtons.OK);
+                MetroMessageBox.Show(this, "Horarío ínvalido", "Formato de hora invalido", MessageBoxButtons.OK);
             }
         }
+
         private async void EfetuaMarcacaoSaidaAlmoco(string saidaAlmoco)
         {
             Apontamento = new Apontamento();
@@ -235,9 +424,7 @@ namespace TimeSheet.Forms
 
 
             if (await _realizaMarcacao.RealizaMarcacao(Marcacao, _marcacaoSaidaAlmoco))
-            {
                 CarregarMarcacaoSaidaAlmoco(saidaAlmoco);
-            }
         }
 
         private void CancelSaidaAlmoco_Click(object sender, EventArgs e)
@@ -320,84 +507,5 @@ namespace TimeSheet.Forms
         }
 
         #endregion
-
-        #region Metodos Entrada
-
-        private void CarregarMarcacaoEntrada(string entrada)
-        {
-            checkEntrada.Visible = true;
-
-            CancelEntrada.Visible = true;
-
-            btnEntrada.Visible = false;
-
-            lblMarcacaoEntrada.Text = entrada;
-
-            lblMarcacaoEntrada.Visible = true;
-
-            txtEntrada.Visible = false;
-
-            btnRelogioEntrada.Visible = false;
-        }
-
-        #endregion
-
-        #region Metodos Saida Almoço
-
-
-        private void CarregarMarcacaoSaidaAlmoco(string saidaAlmoco)
-        {
-            checkSaidaAlmoco.Visible = true;
-
-            CancelSaidaAlmoco.Visible = true;
-
-            btnSaidaAlmoco.Visible = false;
-
-            lblMarcacaoSaidaAlmoco.Text = saidaAlmoco;
-
-            lblMarcacaoSaidaAlmoco.Visible = true;
-
-            txtSaidaAlmoco.Visible = false;
-
-            btnRelogioSaidaAlmoco.Visible = false;
-        }
-
-        #endregion
-
-        private void TempoTranscorrido(string entrada, string saidaAlmoco, string retornoAlmoco)
-        {
-            TimeSpan totalHorasDia = new TimeSpan(9, 0, 0);
-
-            int horaEntrada = Convert.ToInt32(entrada.Substring(0, 2));
-            int minutosEntrada = Convert.ToInt32(entrada.Substring(3, 2));
-
-            TimeSpan horaEntradaFinal = new TimeSpan(horaEntrada, minutosEntrada, 0);
-
-            int horaSaidaAlmoco = Convert.ToInt32(saidaAlmoco.Substring(0, 2));
-            int minutosSaidaAlmoco = Convert.ToInt32(saidaAlmoco.Substring(3, 2));
-
-
-            int horaRetornoAlmoco = Convert.ToInt32(retornoAlmoco.Substring(0, 2));
-            int minutosRetornoAlmoco = Convert.ToInt32(retornoAlmoco.Substring(3, 2));
-
-            TimeSpan horaRetornoAlmocoFinal = new TimeSpan(horaRetornoAlmoco, minutosRetornoAlmoco, 0);
-
-
-            TimeSpan horaSaidaAlmocoFinal = new TimeSpan(horaSaidaAlmoco, minutosSaidaAlmoco, 0);
-
-            TimeSpan totalTempoTranscorrido = horaEntradaFinal - horaSaidaAlmocoFinal;
-
-            TimeSpan totalTempoRestante = (totalHorasDia + totalTempoTranscorrido);
-
-            lblTotalTranscorrido.Text = totalTempoTranscorrido.ToString().Replace("-", "");
-
-            lblTempoRestante.Text = totalTempoRestante.ToString();
-
-
-            TimeSpan totalHoraMinimaSaida = (horaRetornoAlmocoFinal + totalTempoRestante);
-
-            lblHoraMinimaSaida.Text = totalHoraMinimaSaida.ToString();
-
-        }
     }
 }

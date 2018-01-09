@@ -16,6 +16,9 @@ namespace TimeSheet.Forms.Controller.MarcacaoController
         public string RetornoAlmoco { get; set; }
         public string Saida { get; set; }
         public string DataMarcacao { get; set; }
+        public string HorasTotalDia { get; set; }
+        public string DescricaoAtividade { get; set; }
+        public string CodigoAtividade { get; set; }
 
         public Marcacao(Apontamento apontamento)
         {
@@ -26,6 +29,9 @@ namespace TimeSheet.Forms.Controller.MarcacaoController
             this.RetornoAlmoco = apontamento.RetornoAlmoco;
             this.Saida = apontamento.Saida;
             this.DataMarcacao = apontamento.DataMarcacao;
+            this.HorasTotalDia = apontamento.HorasTotalDia;
+            this.DescricaoAtividade = apontamento.DescricaoAtividade;
+            this.CodigoAtividade = apontamento.CodigoAtividade;
         }
 
     }

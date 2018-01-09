@@ -21,11 +21,13 @@ namespace TimeSheet.Forms.Controller.MarcacaoController
                 {
                     IdUsuario = marcacao.IdUsuario,
                     Saida = marcacao.Saida,
-                    DataMarcacao = dataMarcacao
+                    DataMarcacao = dataMarcacao,
+                    HorasTotalDia = marcacao.HorasTotalDia
                 };
             }
 
             apontamento.Saida = marcacao.Saida;
+            apontamento.HorasTotalDia = marcacao.HorasTotalDia;
 
             return await _apontamentoService.SalvarMarcacao(apontamento);
         }
