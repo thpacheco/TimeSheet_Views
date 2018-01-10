@@ -42,7 +42,6 @@ C:\Users\ThiagoPacheco\Desktop\Desenvolvimento\TimeSheet_Views\TimeSheet.Forms\b
 C:\Users\ThiagoPacheco\Desktop\Desenvolvimento\TimeSheet_Views\TimeSheet.Forms\bin\Debug\System.Net.Http.Formatting.dll
 C:\Users\ThiagoPacheco\Desktop\Desenvolvimento\TimeSheet_Views\TimeSheet.Forms\bin\Debug\Newtonsoft.Json.xml
 C:\Users\ThiagoPacheco\Desktop\Desenvolvimento\TimeSheet_Views\TimeSheet.Forms\bin\Debug\System.Net.Http.Formatting.xml
-C:\Users\ThiagoPacheco\Desktop\Desenvolvimento\TimeSheet_Views\TimeSheet.Forms\obj\Debug\TimeSheet.Forms.csprojResolveAssemblyReference.cache
 C:\Users\ThiagoPacheco\Desktop\Desenvolvimento\TimeSheet_Views\TimeSheet.Forms\obj\Debug\TimeSheet.Forms.FormApontamento.resources
 C:\Users\ThiagoPacheco\Desktop\Desenvolvimento\TimeSheet_Views\TimeSheet.Forms\obj\Debug\TimeSheet.Forms.Properties.Resources.resources
 C:\Users\ThiagoPacheco\Desktop\Desenvolvimento\TimeSheet_Views\TimeSheet.Forms\obj\Debug\TimeSheet.Forms.csproj.GenerateResource.Cache

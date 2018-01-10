@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Oxygen-Icons.org-Oxygen-Apps-preferences-system-time.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
@@ -133,6 +136,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\disk_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Hamzasaleem-Stock-Time-Machine.ico" />
+    <Content Include="Oxygen-Icons.org-Oxygen-Apps-preferences-system-time.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
