@@ -73,6 +73,16 @@ namespace TimeSheet.Forms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _lock {
+            get {
+                object obj = ResourceManager.GetObject("lock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap alarm_clock {
             get {
                 object obj = ResourceManager.GetObject("alarm-clock", resourceCulture);
@@ -86,6 +96,16 @@ namespace TimeSheet.Forms.Properties {
         internal static System.Drawing.Bitmap alarm_clock__1_ {
             get {
                 object obj = ResourceManager.GetObject("alarm-clock (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap alarm_clock__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("alarm-clock (1)1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -126,6 +146,26 @@ namespace TimeSheet.Forms.Properties {
         internal static System.Drawing.Bitmap disk_blue {
             get {
                 object obj = ResourceManager.GetObject("disk_blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lock1 {
+            get {
+                object obj = ResourceManager.GetObject("lock1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap padlock {
+            get {
+                object obj = ResourceManager.GetObject("padlock", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

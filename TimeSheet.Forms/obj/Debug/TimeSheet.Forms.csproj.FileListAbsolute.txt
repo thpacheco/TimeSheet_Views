@@ -45,3 +45,5 @@ C:\Users\ThiagoPacheco\Desktop\Desenvolvimento\TimeSheet_Views\TimeSheet.Forms\b
 C:\Users\ThiagoPacheco\Desktop\Desenvolvimento\TimeSheet_Views\TimeSheet.Forms\obj\Debug\TimeSheet.Forms.FormApontamento.resources
 C:\Users\ThiagoPacheco\Desktop\Desenvolvimento\TimeSheet_Views\TimeSheet.Forms\obj\Debug\TimeSheet.Forms.Properties.Resources.resources
 C:\Users\ThiagoPacheco\Desktop\Desenvolvimento\TimeSheet_Views\TimeSheet.Forms\obj\Debug\TimeSheet.Forms.csproj.GenerateResource.Cache
+C:\Users\ThiagoPacheco\Desktop\Desenvolvimento\TimeSheet_Views\TimeSheet.Forms\obj\Debug\TimeSheet.Forms.csprojResolveAssemblyReference.cache
+C:\Users\ThiagoPacheco\Desktop\Desenvolvimento\TimeSheet_Views\TimeSheet.Forms\obj\Debug\TimeSheet.Forms.FormLogin.resources

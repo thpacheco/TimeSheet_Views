@@ -82,15 +82,26 @@
     <Compile Include="FormApontamento.Designer.cs">
       <DependentUpon>FormApontamento.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Apontamento.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\UsuarioService.cs" />
     <Compile Include="Service\ApontamentoService.cs" />
     <Compile Include="Util\ConverteHoras.cs" />
     <Compile Include="Util\Extension.cs" />
     <Compile Include="Util\Validation.cs" />
     <EmbeddedResource Include="FormApontamento.resx">
       <DependentUpon>FormApontamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -140,6 +151,8 @@
   <ItemGroup>
     <Content Include="Hamzasaleem-Stock-Time-Machine.ico" />
     <Content Include="Oxygen-Icons.org-Oxygen-Apps-preferences-system-time.ico" />
+    <None Include="Resources\lock1.png" />
+    <None Include="Resources\lock.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

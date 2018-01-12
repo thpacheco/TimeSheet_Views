@@ -11,7 +11,7 @@ namespace TimeSheet.Forms
 {
     public partial class FormApontamento : MetroForm
     {
-        public static string IdUsuario = "5a4bcf4f7a0052364c68617f";
+        public static string IdUsuario;
         private readonly IMarcacao _marcacaoAtividades = new MarcacaoAtividades();
         private readonly IMarcacao _marcacaoEntrada = new MarcacaoEntrada();
         private readonly IMarcacao _marcacaoRetornoAlmoco = new MarcacaoRetornoAlmoco();
@@ -21,12 +21,18 @@ namespace TimeSheet.Forms
         public readonly ApontamentoService ApontamentoService = new ApontamentoService();
         public Apontamento Apontamento;
         public Marcacao Marcacao;
+        public readonly FormLogin _formUsuario = new FormLogin();
 
         public FormApontamento()
         {
             InitializeComponent();
             CarregarInformacaoUsuario();
             VerificaJaMarcadoNoDia();
+        }
+
+        public void ObterIdUsuario(string idUsuario)
+        {
+            IdUsuario = idUsuario;
         }
 
         private void CarregarInformacaoUsuario()
@@ -121,8 +127,11 @@ namespace TimeSheet.Forms
 
         private void CarregarAtividades(Apontamento apontamento)
         {
-            txtDescricao.Text = apontamento.DescricaoAtividade;
-            txtCodigoAtividade.Text = apontamento.CodigoAtividade;
+            if (apontamento != null)
+            {
+                txtDescricao.Text = apontamento.DescricaoAtividade;
+                txtCodigoAtividade.Text = apontamento.CodigoAtividade;
+            }
         }
 
         private void CalcularHoraMinimaSaida(string retornoAlmoco)
@@ -235,7 +244,7 @@ namespace TimeSheet.Forms
                     "Campos Obrigatórios", MessageBoxButtons.OK);
         }
 
-        
+
 
         private void LimparCampos()
         {
@@ -252,7 +261,7 @@ namespace TimeSheet.Forms
             return true;
         }
 
-        
+
 
         private TimeSpan RetornarHoraMinimaSaida()
         {

@@ -13,11 +13,11 @@ namespace TimeSheet.Forms.Service
 {
     public class ApontamentoService
     {
-        static HttpClient client = new HttpClient();
+        public HttpClient client = new HttpClient();
         public ApontamentoService()
         {
             // Update port # in the following line.
-            client.BaseAddress = new Uri("http://localhost/timesheet/");
+            client.BaseAddress = new Uri("http://localhost:4942/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
@@ -79,6 +79,7 @@ namespace TimeSheet.Forms.Service
             {
                 var apontamenroJsonString = await response.Content.ReadAsStringAsync();
                 apontamento = JsonConvert.DeserializeObject<Apontamento[]>(apontamenroJsonString).ToList();
+                client.CancelPendingRequests();
             }
             return apontamento;
         }
@@ -91,6 +92,7 @@ namespace TimeSheet.Forms.Service
             if (!response.IsSuccessStatusCode) return null;
             var apontamenroJsonString = await response.Content.ReadAsStringAsync();
             apontamento = JsonConvert.DeserializeObject<Apontamento>(apontamenroJsonString);
+            client.CancelPendingRequests();
             return apontamento;
         }
     }
