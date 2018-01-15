@@ -9,7 +9,8 @@ namespace TimeSheet.Forms
 {
     public partial class FormLogin : MetroForm
     {
-        private UsuarioService _usuarioService = new UsuarioService();
+        private readonly UsuarioService _usuarioService = new UsuarioService();
+
         public FormLogin()
         {
             InitializeComponent();
@@ -26,10 +27,9 @@ namespace TimeSheet.Forms
             {
                 if (await BuscarUsuario())
                 {
-                    
                     FormApontamento formApontamento = new FormApontamento();
                     formApontamento.ShowDialog(this);
-                    this.Close();
+                    Close();
                 }
                 else
                 {
@@ -59,6 +59,14 @@ namespace TimeSheet.Forms
             if (txtSenha.Text == "") return false;
 
             return true;
+        }
+
+        private void txtSenha_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                Autenticar();
+            }
         }
     }
 }

@@ -17,7 +17,7 @@ namespace TimeSheet.Forms.Service
         public ApontamentoService()
         {
             // Update port # in the following line.
-            client.BaseAddress = new Uri("http://localhost:4942/");
+            client.BaseAddress = new Uri("http://localhost/timesheet/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));

@@ -118,6 +118,7 @@ namespace TimeSheet.Forms
             {
                 CarregarMarcacaoSaida(apontamento.Saida);
                 CalcularTotalDiferencashoras(apontamento.Saida);
+                CalcularTotalHorasDia();
             }
 
             CarregarAtividades(apontamento);
@@ -267,7 +268,7 @@ namespace TimeSheet.Forms
         {
             TimeSpan horaMinimaSaida = new TimeSpan();
 
-            if (txtEntrada.Text == "" || txtSaidaAlmoco.Text == "")
+            if (txtEntrada.Text != "" || txtSaidaAlmoco.Text != "")
             {
                 var entrada = txtEntrada.Text;
                 var saidaAlmoco = txtSaidaAlmoco.Text;
@@ -290,6 +291,11 @@ namespace TimeSheet.Forms
             return horaMinimaSaida;
         }
 
+        private void CalcularTotalHorasDia()
+        {
+            lblTotalHoras.Text = RetornaTotalHorasTrabalhada().Replace("-", "");
+        }
+
         private async void EfetuaMarcacaoSaida(string saida)
         {
             Apontamento = new Apontamento();
@@ -302,6 +308,7 @@ namespace TimeSheet.Forms
 
             if (await _realizaMarcacao.RealizaMarcacao(Marcacao, _marcacaoSaida))
                 CarregarMarcacaoSaida(saida);
+            CalcularTotalHorasDia();
         }
 
         private void CarregarMarcacaoSaida(string saida)
